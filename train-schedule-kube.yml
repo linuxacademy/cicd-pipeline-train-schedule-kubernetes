@@ -9,7 +9,7 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 9376
-  clusterIP:10.32.0.1
+  clusterIP: 10.32.0.1
   loadBalancerIP: 172.31.104.217
   type: LoadBalancer
 status:
