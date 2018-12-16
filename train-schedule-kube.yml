@@ -12,10 +12,7 @@ spec:
   clusterIP: 10.32.0.1
   loadBalancerIP: 172.31.104.217
   type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-    - ip: 10.32.0.63
+ 
 
 ---
 
