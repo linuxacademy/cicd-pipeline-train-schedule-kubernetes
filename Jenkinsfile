@@ -46,8 +46,9 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube.yml',
+                    credentialsType: 'KubeConfig',
+                    kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
+                    configs: 'mypods-deployment.yml'
                     enableConfigSubstitution: true
                     )
             }
