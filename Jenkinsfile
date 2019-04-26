@@ -49,7 +49,6 @@ pipeline {
                     credentialsType: 'KubeConfig',
                     kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
                     configs: 'mypods-deployment.yml'
-                    enableConfigSubstitution: true
                     )
             }
         }
