@@ -48,7 +48,7 @@ pipeline {
                 kubernetesDeploy(
                     credentialsType: 'KubeConfig',
                     kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'],
-                    configs: 'mypods-deployment.yml'
+                    configs: 'train-schedule-kube.yml'
                     )
             }
         }
