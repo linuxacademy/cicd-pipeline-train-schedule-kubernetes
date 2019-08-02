@@ -31,9 +31,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                    docker.withRegistry("635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
+                    docker.image("DOCKER_IMAGE_NAME").push()
                     }
                 }
             }
