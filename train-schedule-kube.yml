@@ -1,5 +1,5 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: train-schedule-service
 spec:
@@ -8,7 +8,7 @@ spec:
     app: train-schedule
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
     nodePort: 30008
 
 ---
