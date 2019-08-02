@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "saitmach/train-schedule"
+        DOCKER_IMAGE_NAME = "rajdhani"
     }
     stages {
         stage('Build') {
@@ -31,9 +31,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry("635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
-                    docker.image("DOCKER_IMAGE_NAME").push("${env.BUILD_NUMBER}")
-                    docker.push("latest")
+                    docker.withRegistry("635117535044.dkr.ecr.us-east-1.amazonaws.com/rajdhani", "ecr:us-east-1:ecr_id") {
+                    docker.image("DOCKER_IMAGE_NAME").push()
                     }
                 }
             }
