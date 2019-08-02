@@ -32,7 +32,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
-                    docker.image("DOCKER_IMAGE_NAME").push()
+                    docker.image("DOCKER_IMAGE_NAME").push("${env.BUILD_NUMBER}")
+                    docker.push("latest")
                     }
                 }
             }
