@@ -3,6 +3,8 @@ pipeline {
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "rajdhani"
+        ECRURL = " 635117535044.dkr.ecr.us-east-1.amazonaws.com/rajdhani" 
+        ECRCRED = "ecr_id"
     }
     stages {
         stage('Build') {
@@ -31,7 +33,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry("635117535044.dkr.ecr.us-east-1.amazonaws.com/rajdhani", "ecr:us-east-1:ecr_id") {
+                    docker.withRegistry("ECRURL", "ECRCRED") {
                     docker.image("DOCKER_IMAGE_NAME").push()
                     }
                 }
