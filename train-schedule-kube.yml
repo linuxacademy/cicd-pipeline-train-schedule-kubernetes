@@ -29,6 +29,8 @@ spec:
       labels:
         app: train-schedule
     spec:
+      imagePullSecrets:
+      - name: aws-ecr-hello-go
       containers:
       - name: train-schedule
         image: 635117535044.dkr.ecr.us-east-1.amazonaws.com/trains
