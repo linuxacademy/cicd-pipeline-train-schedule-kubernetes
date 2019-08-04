@@ -31,6 +31,6 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: $DOCKER_IMAGE_NAME
+        image: 635117535044.dkr.ecr.us-east-1.amazonaws.com/trains
         ports:
         - containerPort: 8080
