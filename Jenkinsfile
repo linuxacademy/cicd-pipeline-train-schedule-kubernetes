@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "rajdhani"
+        DOCKER_IMAGE_NAME = "trains"
     }
     stages {
         stage('Build') {
@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry("https://635117535044.dkr.ecr.us-east-1.amazonaws.com/rajdhani", "ecr:us-east-1:ecr_id") {
+                    docker.withRegistry("https://635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
                     docker.image("rajdhani").push()
                     }
                 }
