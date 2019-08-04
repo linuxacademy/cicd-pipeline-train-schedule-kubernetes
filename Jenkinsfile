@@ -33,7 +33,6 @@ pipeline {
                 script {
                     docker.withRegistry("https://635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
                     docker.image("trains").push("${env.BUILD_NUMBER}")
-                    docker.push("latest")
                     }
                 }
             }
