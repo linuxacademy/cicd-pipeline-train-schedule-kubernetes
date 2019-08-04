@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
-                    docker.image("rajdhani").push()
+                    docker.image("trains").push()
                     }
                 }
             }
