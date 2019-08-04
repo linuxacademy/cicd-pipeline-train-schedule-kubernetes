@@ -33,6 +33,6 @@ spec:
       - name: aws-ecr-hello-go
       containers:
       - name: train-schedule
-        image: 635117535044.dkr.ecr.us-east-1.amazonaws.com/trains
+        image: 635117535044.dkr.ecr.us-east-1.amazonaws.com/trains:latest
         ports:
         - containerPort: 8080
