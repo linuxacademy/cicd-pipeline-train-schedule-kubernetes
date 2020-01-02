@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "trains"
+        DOCKER_IMAGE_NAME = "saitmach/train-schedule"
     }
     stages {
         stage('Build') {
@@ -31,14 +31,15 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry("https://635117535044.dkr.ecr.us-east-1.amazonaws.com/trains", "ecr:us-east-1:ecr_id") {
-                    docker.image("trains").push("${env.BUILD_NUMBER}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
                 }
             }
         }
         stage('DeployToProduction') {
-            when {
+             when {
                 branch 'master'
             }
             steps {
@@ -48,8 +49,9 @@ pipeline {
                     kubeconfigId: 'kubeconfig',
                     configs: 'train-schedule-kube.yml',
                     enableConfigSubstitution: true
-                    )
+                )
             }
         }
     }
 }
+  
