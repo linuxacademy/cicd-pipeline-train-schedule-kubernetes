@@ -1,5 +1,5 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: train-schedule-service
 spec:
@@ -9,11 +9,11 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 30008
+    nodePort: 8080
 
 ---
 
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: train-schedule-deployment
@@ -29,10 +29,8 @@ spec:
       labels:
         app: train-schedule
     spec:
-      imagePullSecrets:
-      - name: aws-ecr-hello-go
       containers:
       - name: train-schedule
-        image: 635117535044.dkr.ecr.us-east-1.amazonaws.com/trains:$BUILD_NUMBER
+        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
         ports:
         - containerPort: 8080
