@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'master'
+                branch 'development'
             }
             agent { label agentName }
             steps {
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch 'master'
+                branch 'development'
             }
             agent { label agentName }
             steps {
@@ -43,11 +43,48 @@ pipeline {
                 }
             }
         }
+        stage('DeployToDev') {
+            when {
+                branch 'development'
+            }
+            agent { label agentName }
+            environment {
+              NAMESPACE = "dev"   
+           }
+            steps {
+                kubernetesDeploy(
+                    kubeconfigId: 'kube',
+                    configs: 'train-schedule-kube.yml',
+                    enableConfigSubstitution: true
+                )
+            }
+        }
+        stage('DeployToCT') {
+            when {
+                branch 'development'
+            }
+            agent { label agentName }
+            environment {
+              NAMESPACE = "ct"   
+           }
+            steps {
+                input 'Deploy to CT?'
+                milestone(1)
+                kubernetesDeploy(
+                    kubeconfigId: 'kube',
+                    configs: 'train-schedule-kube.yml',
+                    enableConfigSubstitution: true
+                )
+            }
+        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
             }
             agent { label agentName }
+            environment {
+              NAMESPACE = "prod"   
+           }
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
