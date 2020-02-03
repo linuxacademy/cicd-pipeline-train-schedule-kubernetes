@@ -1,11 +1,14 @@
+agentName = "server-slave"
+
 pipeline {
-    agent any
+    agent none
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "willbla/train-schedule"
+        DOCKER_IMAGE_NAME = "shdh/train-schedule"
     }
     stages {
         stage('Build') {
+            agent { label agentName }
             steps {
                 echo 'Running build automation'
                 sh './gradlew build --no-daemon'
@@ -16,6 +19,7 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent { label agentName }
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -29,6 +33,7 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent { label agentName }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -42,6 +47,7 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent { label agentName }
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
