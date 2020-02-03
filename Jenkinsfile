@@ -6,6 +6,7 @@ pipeline {
         //be sure to replace "willbla" with your own Docker Hub username
         MYIMAGE = "$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
         DOCKER_IMAGE_NAME = "shdh/train-schedule"
+        VERSION = "2"
         
     }
     stages {
@@ -70,6 +71,7 @@ pipeline {
             environment {
               NAMESPACE = "ct"  
               NODEPORT = "30060"
+              MYIMAGE = "$DOCKER_IMAGE_NAME:$VERSION"
            }
             steps {
                 input 'Deploy to CT?'
