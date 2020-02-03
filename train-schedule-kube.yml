@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
+        image: $DOCKER_IMAGE_NAME
         env:
         # Define the environment variable
         - name: NAMESPACE
