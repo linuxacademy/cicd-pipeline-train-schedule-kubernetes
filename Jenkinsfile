@@ -4,7 +4,9 @@ pipeline {
     agent none
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
+        MYIMAGE = "$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
         DOCKER_IMAGE_NAME = "shdh/train-schedule"
+        
     }
     stages {
         stage('Build') {
