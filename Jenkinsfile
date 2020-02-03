@@ -49,7 +49,8 @@ pipeline {
             }
             agent { label agentName }
             environment {
-              NAMESPACE = "dev"   
+              NAMESPACE = "dev"  
+              NODEPORT = "30050" 
            }
             steps {
                 kubernetesDeploy(
@@ -65,7 +66,8 @@ pipeline {
             }
             agent { label agentName }
             environment {
-              NAMESPACE = "ct"   
+              NAMESPACE = "ct"  
+              NODEPORT = "30060"
            }
             steps {
                 input 'Deploy to CT?'
@@ -83,7 +85,8 @@ pipeline {
             }
             agent { label agentName }
             environment {
-              NAMESPACE = "prod"   
+              NAMESPACE = "prod"  
+              NODEPORT = "30070"
            }
             steps {
                 input 'Deploy to Production?'
