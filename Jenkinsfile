@@ -91,6 +91,7 @@ pipeline {
             environment {
               NAMESPACE = "prod"  
               NODEPORT = "30070"
+              MYIMAGE = "$DOCKER_IMAGE_NAME:$VERSION"
            }
             steps {
                 input 'Deploy to Production?'
